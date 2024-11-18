@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace DivanteTranslationBundle\Controller;
 
 use DivanteTranslationBundle\Provider\ProviderFactory;
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
+use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
 use Pimcore\Model\DataObject;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/object")
  */
-final class ObjectController extends AdminController
+final class ObjectController extends AdminAbstractController
 {
     private string $sourceLanguage;
     private string $provider;

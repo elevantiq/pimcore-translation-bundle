@@ -1,5 +1,5 @@
 {
-  "name": "divante-ltd/pimcore-translation-bundle",
+  "name": "elevantiq/pimcore-translation-bundle",
   "type": "pimcore-bundle",
   "license": "GPL-3.0-or-later",
   "description": "Pimcore Translation Bundle",
@@ -29,10 +29,10 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.2",
     "ext-intl": "*",
     "ext-json": "*",
-    "pimcore/pimcore": ">=5.5.0",
+    "pimcore/pimcore": ">=11.0",
     "guzzlehttp/guzzle": "^6.3 || ^7.0"
   },
   "require-dev": {

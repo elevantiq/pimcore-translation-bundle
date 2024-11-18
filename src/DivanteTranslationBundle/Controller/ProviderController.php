@@ -2,15 +2,14 @@
 
 namespace DivanteTranslationBundle\Controller;
 
-use DivanteTranslationBundle\Provider\ProviderFactory;
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
+use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
  */
-final class ProviderController extends AdminController
+final class ProviderController extends AdminAbstractController
 {
     private string $sourceLanguage;
     private string $provider;
