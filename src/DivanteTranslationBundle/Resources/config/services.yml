@@ -24,3 +24,7 @@ services:
             $apiKey: '%divante_translation.api_key%'
             $providers: !tagged translation_bundle.provider
             $formality: '%divante_translation.formality%'
+
+    DivanteTranslationBundle\EventListener\AdminInterfaceListener:
+      tags:
+        - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJsFiles }
