@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Piotr Rugała <piotr@isedo.pl>
- * @copyright Copyright (c) 2021 Divante Ltd. (https://divante.co)
- */
 
 declare(strict_types=1);
 
@@ -14,6 +10,13 @@ class GoogleProvider extends AbstractProvider
 {
     protected string $url = 'https://www.googleapis.com/';
 
+    /**
+     * @param string $data
+     * @param string $targetLanguage
+     *
+     * @throws \DivanteTranslationBundle\Exception\TranslationException
+     * @return string
+     */
     public function translate(string $data, string $targetLanguage): string
     {
         try {
@@ -42,6 +45,9 @@ class GoogleProvider extends AbstractProvider
         return $data['data']['translations'][0]['translatedText'];
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return 'google_translate';

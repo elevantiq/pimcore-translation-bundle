@@ -3,7 +3,7 @@
 namespace DivanteTranslationBundle\Controller;
 
 use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
-use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**

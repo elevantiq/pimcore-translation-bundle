@@ -13,25 +13,30 @@
 
 pimcore.registerNS("pimcore.object.tags.wysiwyg");
 pimcore.object.tags.wysiwyg = Class.create(pimcore.object.tags.wysiwyg, {
-
     getLayoutEdit: function () {
-        var width = '600';
+        var width = '900';
 
         this.getLayout();
-        this.component.on("afterlayout", this.initCkEditor.bind(this));
-        this.component.on("beforedestroy", function () {
-            if (this.ckeditor) {
-                this.ckeditor.destroy();
-                this.ckeditor = null;
-            }
-        }.bind(this));
+        this.component.on("afterlayout", this.startWysiwygEditor.bind(this));
+
+        if(this.ddWysiwyg) {
+            this.component.on("beforedestroy", function () {
+                const beforeDestroyWysiwyg = new CustomEvent(pimcore.events.beforeDestroyWysiwyg, {
+                    detail: {
+                        context: "object",
+                    },
+                });
+                document.dispatchEvent(beforeDestroyWysiwyg);
+            }.bind(this));
+        }
+
         if (this.fieldConfig.width) {
             width = this.fieldConfig.width;
         }
 
         if (this.context && this.context.language) {
             this.translateButton = new pimcore.object.elementservice.translateButton(
-                this.object.data.general.o_id,
+                this.object.data.general.id,
                 this.fieldConfig.name,
                 this,
                 'wysiwyg',
@@ -41,7 +46,7 @@ pimcore.object.tags.wysiwyg = Class.create(pimcore.object.tags.wysiwyg, {
             this.translateButton = {};
         }
 
-        this.component.width = 550;
+        this.component.width = 850;
 
         return Ext.create('Ext.form.FieldContainer', {
             labelWidth: this.fieldConfig.width,

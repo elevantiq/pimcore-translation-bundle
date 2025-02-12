@@ -16,10 +16,10 @@ class AdminInterfaceListener
                 $event->getPaths(),
                 [
                     '/bundles/divantetranslation/js/pimcore/startup.js',
-                    '/bundles/divantetranslation/js/pimcore/object/tags/input.js',
-                    '/bundles/divantetranslation/js/pimcore/object/tags/wysiwyg.js',
-                    '/bundles/divantetranslation/js/pimcore/object/tags/textarea.js',
                     '/bundles/divantetranslation/js/pimcore/object/elementservice.js',
+                    '/bundles/divantetranslation/js/pimcore/object/tags/input.js',
+                    '/bundles/divantetranslation/js/pimcore/object/tags/textarea.js',
+                    '/bundles/divantetranslation/js/pimcore/object/tags/wysiwyg.js',
                 ]
             )
         );

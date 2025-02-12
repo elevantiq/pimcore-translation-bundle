@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Piotr Rugała <piotr@isedo.pl>
- * @copyright Copyright (c) 2021 Divante Ltd. (https://divante.co)
- */
 
 declare(strict_types=1);
 
@@ -15,6 +11,11 @@ class DeeplProvider extends AbstractProvider implements FormalityProviderInterfa
     protected string $url = 'https://api.deepl.com/';
     protected string $formality = 'default';
 
+    /**
+     * @param string|null $formality
+     *
+     * @return $this
+     */
     public function setFormality(?string $formality): self
     {
         $this->formality = $formality ?? $this->formality;
@@ -22,6 +23,13 @@ class DeeplProvider extends AbstractProvider implements FormalityProviderInterfa
         return $this;
     }
 
+    /**
+     * @param string $data
+     * @param string $targetLanguage
+     *
+     * @throws \DivanteTranslationBundle\Exception\TranslationException
+     * @return string
+     */
     public function translate(string $data, string $targetLanguage): string
     {
         try {

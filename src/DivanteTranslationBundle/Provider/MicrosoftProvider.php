@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Piotr Rugała <piotr@isedo.pl>
- * @copyright Copyright (c) 2021 Divante Ltd. (https://divante.co)
- */
 
 declare(strict_types=1);
 
@@ -14,6 +10,13 @@ class MicrosoftProvider extends AbstractProvider
 {
     protected string $url = 'https://api.cognitive.microsofttranslator.com/';
 
+    /**
+     * @param string $data
+     * @param string $targetLanguage
+     *
+     * @throws \DivanteTranslationBundle\Exception\TranslationException
+     * @return string
+     */
     public function translate(string $data, string $targetLanguage): string
     {
         try {

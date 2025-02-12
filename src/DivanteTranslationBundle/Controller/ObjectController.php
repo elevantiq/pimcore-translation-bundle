@@ -1,9 +1,4 @@
 <?php
-/**
- * @author Łukasz Marszałek <lmarszalek@divante.co>
- * @author Piotr Rugała <piotr@isedo.pl>
- * @copyright Copyright (c) 2019 Divante Ltd. (https://divante.co)
- */
 
 declare(strict_types=1);
 
@@ -11,8 +6,8 @@ namespace DivanteTranslationBundle\Controller;
 
 use DivanteTranslationBundle\Provider\ProviderFactory;
 use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
-use Pimcore\Bundle\AdminBundle\HttpFoundation\JsonResponse;
 use Pimcore\Model\DataObject;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -36,13 +31,19 @@ final class ObjectController extends AdminAbstractController
     public function translateFieldAction(Request $request, ProviderFactory $providerFactory): JsonResponse
     {
         try {
-            $object = DataObject::getById($request->get('sourceId'));
+            $sourceId = $request->get('sourceId');
+            $object = DataObject::getById($sourceId);
+            if (!$object) {
+                return $this->adminJson([
+                    'success' => false,
+                    'message' => 'Cannot find object with id: ' . ($sourceId ?: 'empty'),
+                ]);
+            }
 
             $lang = $request->get('lang');
             $fieldName = 'get' . ucfirst($request->get('fieldName'));
 
             $data = $object->$fieldName($lang) ?: $object->$fieldName($this->sourceLanguage);
-
             if (!$data) {
                 return $this->adminJson([
                     'success' => false,

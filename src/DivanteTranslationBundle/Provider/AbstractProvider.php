@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Piotr Rugała <piotr@isedo.pl>
- * @copyright Copyright (c) 2021 Divante Ltd. (https://divante.co)
- */
 
 declare(strict_types=1);
 
@@ -12,9 +8,15 @@ use GuzzleHttp\Client;
 
 abstract class AbstractProvider implements ProviderInterface
 {
-    protected string $url;
+    protected string $url = '';
+
     protected string $apiKey;
 
+    /**
+     * @param string $apiKey
+     *
+     * @return $this
+     */
     public function setApiKey(string $apiKey): self
     {
         $this->apiKey = $apiKey;
@@ -22,6 +24,9 @@ abstract class AbstractProvider implements ProviderInterface
         return $this;
     }
 
+    /**
+     * @return \GuzzleHttp\Client
+     */
     protected function getHttpClient(): Client
     {
         return new Client([
