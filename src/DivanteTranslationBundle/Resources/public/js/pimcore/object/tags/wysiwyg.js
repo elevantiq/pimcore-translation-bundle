@@ -14,7 +14,7 @@
 pimcore.registerNS("pimcore.object.tags.wysiwyg");
 pimcore.object.tags.wysiwyg = Class.create(pimcore.object.tags.wysiwyg, {
     getLayoutEdit: function () {
-        var width = '900';
+        var width = '550';
 
         this.getLayout();
         this.component.on("afterlayout", this.startWysiwygEditor.bind(this));
@@ -46,7 +46,7 @@ pimcore.object.tags.wysiwyg = Class.create(pimcore.object.tags.wysiwyg, {
             this.translateButton = {};
         }
 
-        this.component.width = 850;
+        this.component.width = width - 50;
 
         return Ext.create('Ext.form.FieldContainer', {
             labelWidth: this.fieldConfig.width,
