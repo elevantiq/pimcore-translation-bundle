@@ -79,7 +79,7 @@ pimcore.object.tags.textarea = Class.create(pimcore.object.tags.abstract, {
                 this.context.language
             );
         } else {
-            this.translateButton = {};
+            this.translateButton = null;
         }
 
         conf.width += conf.labelWidth;
@@ -111,6 +111,11 @@ pimcore.object.tags.textarea = Class.create(pimcore.object.tags.abstract, {
             //init word count
             this.updateCharCount(this.component, charCount);
 
+            var items = [this.component, charCount];
+            if (this.translateButton) {
+                items.push(this.translateButton);
+            }
+
             return Ext.create("Ext.Panel", {
                 cls: "object_field object_field_type_" + this.type,
                 style: "margin-bottom: 10px",
@@ -118,14 +123,15 @@ pimcore.object.tags.textarea = Class.create(pimcore.object.tags.abstract, {
                     type: 'vbox',
                     align: 'left'
                 },
-                items: [
-                    this.component,
-                    charCount,
-                    this.translateButton,
-                ]
+                items: items
             });
 
         } else {
+            var items = [this.component];
+            if (this.translateButton) {
+                items.push(this.translateButton);
+            }
+
             return Ext.create("Ext.Panel", {
                 cls: "object_field object_field_type_" + this.type,
                 style: "margin-bottom: 10px",
@@ -133,10 +139,7 @@ pimcore.object.tags.textarea = Class.create(pimcore.object.tags.abstract, {
                     type: 'vbox',
                     align: 'left'
                 },
-                items: [
-                    this.component,
-                    this.translateButton,
-                ]
+                items: items
             });
         }
     },

@@ -57,7 +57,7 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.input, {
                 this.context.language
             );
         } else {
-            this.translateButton = {};
+            this.translateButton = null;
         }
 
         if (this.fieldConfig.showCharCount) {
@@ -76,6 +76,11 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.input, {
 
             this.updateCharCount(this.component, charCount);
 
+            var items = [this.component, charCount];
+            if (this.translateButton) {
+                items.push(this.translateButton);
+            }
+
             return Ext.create("Ext.Panel", {
                 cls: "object_field",
                 style: "margin-bottom: 10px",
@@ -83,21 +88,19 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.input, {
                     type: 'vbox',
                     align: 'left'
                 },
-                items: [
-                    this.component,
-                    charCount,
-                    this.translateButton,
-                ]
+                items: items
             });
 
         } else {
+            var items = [this.component];
+            if (this.translateButton) {
+                items.push(this.translateButton);
+            }
+
             return Ext.create('Ext.form.FieldContainer', {
                 labelWidth: input.width,
                 layout: 'hbox',
-                items: [
-                    this.component,
-                    this.translateButton,
-                ],
+                items: items,
                 componentCls: "object_field",
                 border: false,
                 style: {

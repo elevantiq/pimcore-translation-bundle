@@ -43,23 +43,23 @@ pimcore.object.tags.wysiwyg = Class.create(pimcore.object.tags.wysiwyg, {
                 this.context.language
             );
         } else {
-            this.translateButton = {};
+            this.translateButton = null;
         }
 
-        this.component.width = width - 50;
+        var items = [this.component];
+        if (this.translateButton) {
+            items.push(this.translateButton);
+        }
 
-        return Ext.create('Ext.form.FieldContainer', {
-            labelWidth: this.fieldConfig.width,
-            layout: 'hbox',
-            items: [
-                this.component,
-                this.translateButton,
-            ],
+        return Ext.create('Ext.Panel', {
+            layout: 'vbox',
+            items: items,
             componentCls: "object_field custom_wysiwyg",
             border: false,
             width: width,
             style: {
                 padding: 0,
+                marginBottom: '10px',
             },
         });
     },
